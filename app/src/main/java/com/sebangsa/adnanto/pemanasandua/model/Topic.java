@@ -5,7 +5,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Topic extends RealmObject {
+public class Topic {
 
     private int id;
     private String label;

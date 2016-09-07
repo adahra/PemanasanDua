@@ -3,6 +3,7 @@ package com.sebangsa.adnanto.pemanasandua.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -11,7 +12,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Group extends RealmObject {
+public class Group {
     @Expose
     @SerializedName(value = "verified")
     private Verified verified;
@@ -23,7 +24,7 @@ public class Group extends RealmObject {
     private String bangsaName;
     @Expose
     @SerializedName(value = "room_list")
-    private RealmList<RoomList> roomLists;
+    private List<RoomList> roomLists = new ArrayList<>();
     @Expose
     @SerializedName(value = "id")
     private int id;
@@ -77,7 +78,7 @@ public class Group extends RealmObject {
         return roomLists;
     }
 
-    public void setRoomLists(RealmList<RoomList> roomLists) {
+    public void setRoomLists(List<RoomList> roomLists) {
         this.roomLists = roomLists;
     }
 

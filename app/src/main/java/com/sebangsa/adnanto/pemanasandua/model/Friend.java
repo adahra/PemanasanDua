@@ -3,13 +3,16 @@ package com.sebangsa.adnanto.pemanasandua.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Friend extends RealmObject {
+public class Friend {
     @Expose
     @SerializedName(value = "username")
     private String username;
@@ -24,7 +27,7 @@ public class Friend extends RealmObject {
     private String name;
     @Expose
     @SerializedName(value = "bangsa")
-    private RealmList<RealmObject> bangsa;
+    private List<Object> bangsa = new ArrayList<>();
     @Expose
     @SerializedName(value = "avatar")
     private Avatar avatar;
@@ -73,11 +76,11 @@ public class Friend extends RealmObject {
         this.name = name;
     }
 
-    public RealmList<RealmObject> getBangsa() {
+    public List<Object> getBangsa() {
         return bangsa;
     }
 
-    public void setBangsa(RealmList<RealmObject> bangsa) {
+    public void setBangsa(List<Object> bangsa) {
         this.bangsa = bangsa;
     }
 

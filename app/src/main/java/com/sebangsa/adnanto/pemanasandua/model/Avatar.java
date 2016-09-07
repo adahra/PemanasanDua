@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Avatar extends RealmObject {
+public class Avatar {
     @Expose
     @SerializedName(value = "small")
     private String small;

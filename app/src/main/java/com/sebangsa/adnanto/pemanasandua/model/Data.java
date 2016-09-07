@@ -3,6 +3,7 @@ package com.sebangsa.adnanto.pemanasandua.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -11,7 +12,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Data extends RealmObject {
+public class Data {
     @Expose
     @SerializedName(value = "status")
     private int status;
@@ -20,13 +21,13 @@ public class Data extends RealmObject {
     private int timestamp;
     @Expose
     @SerializedName(value = "friends")
-    private RealmList<Friend> friends;
+    private List<Friend> friends = new ArrayList<>();
     @Expose
     @SerializedName(value = "status_lang")
     private String statusLang;
     @Expose
     @SerializedName("groups")
-    private RealmList<Group> groups;
+    private List<Group> groups = new ArrayList<>();
 
     public int getStatus() {
         return status;
@@ -44,11 +45,11 @@ public class Data extends RealmObject {
         this.timestamp = timestamp;
     }
 
-    public RealmList<Friend> getFriends() {
+    public List<Friend> getFriends() {
         return friends;
     }
 
-    public void setFriends(RealmList<Friend> friends) {
+    public void setFriends(List<Friend> friends) {
         this.friends = friends;
     }
 
@@ -64,7 +65,7 @@ public class Data extends RealmObject {
         return groups;
     }
 
-    public void setGroups(RealmList<Group> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 }

@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Action extends RealmObject {
+public class Action {
     @Expose
     @SerializedName(value = "is_muted")
     private boolean isMuted;

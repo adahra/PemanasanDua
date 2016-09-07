@@ -5,7 +5,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class RoomList extends RealmObject {
+public class RoomList {
     private int postCount;
     private String roomName;
     private int roomId;
