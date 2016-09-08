@@ -14,4 +14,8 @@
     <string name="button_followers_main">Followers</string>
     <string name="button_group_main">Group</string>
     <string name="gambar">gambar</string>
+    <string name="string_nav_following">Following</string>
+    <string name="string_nav_followers">Followers</string>
+    <string name="string_hint_search">Type your keyword here...</string>
+    <string name="title_activity_profil">ProfilActivity</string>
 </resources>
