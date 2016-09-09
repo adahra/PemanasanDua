@@ -18,7 +18,7 @@
             android:layout_gravity="center_vertical"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:id="@+id/ivGambar"
+            android:id="@+id/iv_gambar"
             android:contentDescription="@string/gambar" />
 
         <LinearLayout
@@ -34,17 +34,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvUserName" />
+                android:id="@+id/tv_user_name" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvName" />
+                android:id="@+id/tv_name" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvDeskripsi" />
+                android:id="@+id/tv_deskripsi" />
         </LinearLayout>
 
         <ImageButton
@@ -52,8 +52,7 @@
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:layout_marginRight="16dp"
-            android:id="@+id/imgBtnGambar"
-            android:background="@color/colorGreenSebangsa"
+            android:id="@+id/img_btn_gambar"
             android:contentDescription="@string/gambar" />
     </LinearLayout>
 </android.support.v7.widget.CardView>
