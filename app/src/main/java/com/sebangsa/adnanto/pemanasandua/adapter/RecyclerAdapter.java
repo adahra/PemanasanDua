@@ -1,7 +1,10 @@
 package com.sebangsa.adnanto.pemanasandua.adapter;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,6 +69,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.tvUserName.setText(dataUser.get(position).getUsername().trim());
         holder.tvName.setText(dataUser.get(position).getName().trim());
         // holder.tvDeskripsi.setText(dataUser.get(position).getBio().trim());
+
+        if (dataUser.get(position).getAction().isFollow()) {
+            holder.imgBtnGambar.setImageResource(R.drawable.i_followed);
+            holder.imgBtnGambar.setBackgroundColor(Color.argb(255, 147, 200, 74));
+        } else {
+            holder.imgBtnGambar.setImageResource(R.drawable.i_follow);
+            holder.imgBtnGambar.setBackgroundColor(Color.argb(255, 255, 255, 255));
+        }
     }
 
     @Override
@@ -82,13 +94,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         protected TextView tvUserName;
         protected TextView tvName;
         protected TextView tvDeskripsi;
+        protected ImageButton imgBtnGambar;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ivGambar = (ImageView) itemView.findViewById(R.id.ivGambar);
-            tvUserName = (TextView) itemView.findViewById(R.id.tvUserName);
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvDeskripsi = (TextView) itemView.findViewById(R.id.tvDeskripsi);
+            ivGambar = (ImageView) itemView.findViewById(R.id.iv_gambar);
+            tvUserName = (TextView) itemView.findViewById(R.id.tv_user_name);
+            tvName = (TextView) itemView.findViewById(R.id.tv_name);
+            tvDeskripsi = (TextView) itemView.findViewById(R.id.tv_deskripsi);
+            imgBtnGambar = (ImageButton) itemView.findViewById(R.id.img_btn_gambar);
         }
     }
 }
