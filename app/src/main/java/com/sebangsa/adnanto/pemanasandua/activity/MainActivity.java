@@ -69,11 +69,12 @@ public class MainActivity extends AppCompatActivity
                 List<Friend> dataFriend;
                 dataFriend = response.body().getFriends();
 
+                /*
                 for (int i = 0; i < dataFriend.size(); i++) {
                     dataFriend.get(i).setUsername(dataFriend.get(i).getUsername().trim());
                     dataFriend.get(i).setName(dataFriend.get(i).getName().trim());
                     dataFriend.get(i).setBio(dataFriend.get(i).getBio().trim());
-                }
+                } */
 
                 recyclerAdapter = new RecyclerAdapter(dataFriend, MainActivity.this);
                 recyclerView.setAdapter(recyclerAdapter);
