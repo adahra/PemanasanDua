@@ -1,12 +1,13 @@
 package com.sebangsa.adnanto.pemanasandua.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.sebangsa.adnanto.pemanasandua.R;
+import com.sebangsa.adnanto.pemanasandua.activity.ProfilActivity;
+import com.sebangsa.adnanto.pemanasandua.config.otto.BusProvider;
 import com.sebangsa.adnanto.pemanasandua.model.Friend;
 
 import java.util.ArrayList;
@@ -31,7 +34,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private int rowLayout;
     private List<Friend> dataUser = new ArrayList<>();
     private Context context;
-    private static RecyclerAdapterClickListener recyclerAdapterClickListener;
 
     public RecyclerAdapter(List<Friend> dataUser, Context context) {
         this.dataUser = dataUser;
@@ -54,6 +56,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        final Friend friend = dataUser.get(position);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BusProvider.getInstance().post(friend);
+                Intent intent = new Intent(context, ProfilActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
         try {
             Glide.with(context).load(dataUser.get(position).getAvatar().getSmall()).asBitmap()
                     .centerCrop().into(new BitmapImageViewTarget(holder.ivGambar) {
@@ -69,12 +82,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             e.printStackTrace();
         }
 
-        holder.ivGambar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         holder.tvUserName.setText(dataUser.get(position).getUsername().trim());
         holder.tvName.setText(dataUser.get(position).getName().trim());
         // holder.tvDeskripsi.setText(dataUser.get(position).getBio().trim());
@@ -93,34 +100,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return dataUser.size();
     }
 
-    public void setOnItemClickListener(RecyclerAdapterClickListener recyclerAdapterClickListener) {
-        this.recyclerAdapterClickListener = recyclerAdapterClickListener;
-    }
-
-    public interface RecyclerAdapterClickListener {
-        public void onItemClick(int position, View view);
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         protected ImageView ivGambar;
         protected TextView tvUserName;
         protected TextView tvName;
         protected TextView tvDeskripsi;
         protected ImageButton imgBtnGambar;
+        protected CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            cardView = (CardView) itemView.findViewById(R.id.card_view_list);
             ivGambar = (ImageView) itemView.findViewById(R.id.iv_gambar);
             tvUserName = (TextView) itemView.findViewById(R.id.tv_user_name);
             tvName = (TextView) itemView.findViewById(R.id.tv_name);
             tvDeskripsi = (TextView) itemView.findViewById(R.id.tv_deskripsi);
             imgBtnGambar = (ImageButton) itemView.findViewById(R.id.img_btn_gambar);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            recyclerAdapterClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 }
