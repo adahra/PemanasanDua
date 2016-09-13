@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.sebangsa.adnanto.pemanasandua.R;
+import com.sebangsa.adnanto.pemanasandua.config.otto.BusProvider;
 
 public class ProfilActivity extends AppCompatActivity {
 
@@ -15,5 +16,6 @@ public class ProfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        BusProvider.getInstance().register(this);
     }
 }
