@@ -2,41 +2,65 @@ package com.sebangsa.adnanto.pemanasandua.config.realm;
 
 import android.content.Context;
 
+import com.sebangsa.adnanto.pemanasandua.model.realm.RealmFriend;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 /**
- * Created by adnanto on 9/7/16.
+ * Created by adnanto on 9/13/16.
  */
 public class RealmService {
-    private Context context;
+    private static RealmService realmService;
+    private static final String TAG = RealmService.class.getSimpleName();
     private Realm realm;
-    private RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(context)
-            .name("Sebangsa")
-            .schemaVersion(0)
-            .build();
 
-    public Context getContext() {
-        return context;
+    public RealmService() {
+        realm = Realm.getDefaultInstance();
     }
 
-    public void setContext(Context context) {
-        this.context = context;
+    public static RealmService getRealmService(Context context) {
+        RealmConfiguration realmConfig = new RealmConfiguration
+                .Builder(context)
+                .deleteRealmIfMigrationNeeded()
+                .name("PemanasanDua")
+                .inMemory()
+                .build();
+        Realm.setDefaultConfiguration(realmConfig);
+
+        if (realmService == null) {
+            realmService = new RealmService();
+        }
+
+        return realmService;
     }
 
-    public Realm getRealm() {
-        return realm;
+    public void saveUser(final RealmFriend friend) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realmm) {
+                realmm.copyToRealmOrUpdate(friend);
+            }
+        });
     }
 
-    public void setRealm(Realm realm) {
-        this.realm = realm;
+    public void updateUser(final RealmFriend friend) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realmm) {
+                if (friend.isFollow()) {
+                    friend.setFollow(false);
+                } else {
+                    friend.setFollow(true);
+                }
+
+                realmm.copyToRealmOrUpdate(friend);
+            }
+        });
     }
 
-    public RealmConfiguration getRealmConfiguration() {
-        return realmConfiguration;
-    }
-
-    public void setRealmConfiguration(RealmConfiguration realmConfiguration) {
-        this.realmConfiguration = realmConfiguration;
+    public RealmResults<RealmFriend> getUsers() {
+        return realm.where(RealmFriend.class).findAll();
     }
 }
