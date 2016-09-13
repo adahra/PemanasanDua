@@ -43,6 +43,7 @@
         android:layout_margin="16dp"
         android:elevation="10dp"
         android:scaleType="centerCrop"
+        app:layout_behavior="com.sebangsa.adnanto.pemanasandua.view.AvatarImageBehavior"
         app:civ_border="true"
         app:civ_borderColor="@color/colorWhite"
         app:civ_borderWidth="2dp"
