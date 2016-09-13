@@ -11,18 +11,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.sebangsa.adnanto.pemanasandua.R;
 import com.sebangsa.adnanto.pemanasandua.adapter.RecyclerAdapter;
+import com.sebangsa.adnanto.pemanasandua.config.otto.BusProvider;
+import com.sebangsa.adnanto.pemanasandua.config.realm.RealmService;
 import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitInterface;
 import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitService;
 import com.sebangsa.adnanto.pemanasandua.model.Data;
 import com.sebangsa.adnanto.pemanasandua.model.Friend;
+import com.sebangsa.adnanto.pemanasandua.model.realm.RealmFriend;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.Adapter recyclerAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Friend> dataUser;
+    private RealmService realmService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer != null) {
             drawer.setDrawerListener(toggle);
         }
+
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -61,30 +69,48 @@ public class MainActivity extends AppCompatActivity
             navigationView.setNavigationItemSelectedListener(this);
         }
 
-        RetrofitInterface retrofitInterface = RetrofitService.createService(RetrofitInterface.class);
-        Call<Data> call = retrofitInterface.getFollowing();
-        call.enqueue(new Callback<Data>() {
-            @Override
-            public void onResponse(Call<Data> call, Response<Data> response) {
-                List<Friend> dataFriend;
-                dataFriend = response.body().getFriends();
+        realmService = RealmService.getRealmService(this);
+        BusProvider.getInstance().register(this);
 
-                /*
-                for (int i = 0; i < dataFriend.size(); i++) {
-                    dataFriend.get(i).setUsername(dataFriend.get(i).getUsername().trim());
-                    dataFriend.get(i).setName(dataFriend.get(i).getName().trim());
-                    dataFriend.get(i).setBio(dataFriend.get(i).getBio().trim());
-                } */
+        if (dataUser.size() > 0) {
+            // recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+        } else {
+            RealmResults<RealmFriend>
+                    friendRealmResults = realmService.getUsers();
+            if (friendRealmResults.size() > 0) {
+                List<RealmFriend> friendList = new ArrayList<>();
+                for (RealmFriend realmFriend : friendRealmResults) {
+                    friendList.add(realmFriend);
+                }
 
-                recyclerAdapter = new RecyclerAdapter(dataFriend, MainActivity.this);
-                recyclerView.setAdapter(recyclerAdapter);
+                // recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+            } else {
+                RetrofitInterface retrofitInterface = RetrofitService.createService(RetrofitInterface.class);
+                Call<Data> call = retrofitInterface.getFollowing();
+                call.enqueue(new Callback<Data>() {
+                    @Override
+                    public void onResponse(Call<Data> call, Response<Data> response) {
+                        List<Friend> dataFriend;
+                        dataFriend = response.body().getFriends();
+
+                        recyclerAdapter = new RecyclerAdapter(dataFriend, MainActivity.this);
+                        ((RecyclerAdapter) recyclerAdapter).setOnItemClickListener(new RecyclerAdapter.RecyclerAdapterClickListener() {
+                            @Override
+                            public void onItemClick(int position, View view) {
+                                Log.d(TAG, "Posisi data " + position);
+                            }
+                        });
+
+                        recyclerView.setAdapter(recyclerAdapter);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Data> call, Throwable t) {
+
+                    }
+                });
             }
-
-            @Override
-            public void onFailure(Call<Data> call, Throwable t) {
-
-            }
-        });
+        }
     }
 
     @Override
@@ -118,5 +144,17 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BusProvider.getInstance().unregister(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BusProvider.getInstance().register(this);
     }
 }
