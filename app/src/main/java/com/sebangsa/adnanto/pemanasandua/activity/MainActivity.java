@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.sebangsa.adnanto.pemanasandua.R;
 import com.sebangsa.adnanto.pemanasandua.adapter.RecyclerAdapter;
@@ -35,11 +34,10 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String STRING_TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Friend> dataUser;
+    private ArrayList<Friend> dataUser = new ArrayList<>();
     private RealmService realmService;
 
     @Override
@@ -49,11 +47,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_tampil_data);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            recyclerView = (RecyclerView) findViewById(R.id.rv_tampil_data);
+            recyclerView.setLayoutManager(layoutManager);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,6 +70,7 @@ public class MainActivity extends AppCompatActivity
 
         if (dataUser.size() > 0) {
             // recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+            Log.d(STRING_TAG, "Datanya sudah ada");
         } else {
             RealmResults<RealmFriend>
                     friendRealmResults = realmService.getUsers();
@@ -94,13 +91,6 @@ public class MainActivity extends AppCompatActivity
                         dataFriend = response.body().getFriends();
 
                         recyclerAdapter = new RecyclerAdapter(dataFriend, MainActivity.this);
-                        ((RecyclerAdapter) recyclerAdapter).setOnItemClickListener(new RecyclerAdapter.RecyclerAdapterClickListener() {
-                            @Override
-                            public void onItemClick(int position, View view) {
-                                Log.d(TAG, "Posisi data " + position);
-                            }
-                        });
-
                         recyclerView.setAdapter(recyclerAdapter);
                     }
 
@@ -111,6 +101,9 @@ public class MainActivity extends AppCompatActivity
                 });
             }
         }
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     @Override
