@@ -2,7 +2,10 @@ package com.sebangsa.adnanto.pemanasandua.config.realm;
 
 import android.content.Context;
 
+import com.sebangsa.adnanto.pemanasandua.model.Friend;
 import com.sebangsa.adnanto.pemanasandua.model.realm.RealmFriend;
+
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -36,7 +39,7 @@ public class RealmService {
         return realmService;
     }
 
-    public void saveUser(final RealmFriend friend) {
+    public void saveUser(final Friend friend) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realmm) {
@@ -60,7 +63,16 @@ public class RealmService {
         });
     }
 
-    public RealmResults<RealmFriend> getUsers() {
-        return realm.where(RealmFriend.class).findAll();
+    public RealmResults<Friend> getUsers() {
+        return realm.where(Friend.class).findAll();
+    }
+
+    public void saveUser(final List<Friend> dataFriend) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm rRealm) {
+                rRealm.copyToRealmOrUpdate(dataFriend);
+            }
+        });
     }
 }
