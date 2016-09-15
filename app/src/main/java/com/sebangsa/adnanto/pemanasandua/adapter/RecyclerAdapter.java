@@ -3,7 +3,6 @@ package com.sebangsa.adnanto.pemanasandua.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.CardView;
@@ -14,14 +13,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.sebangsa.adnanto.pemanasandua.R;
 import com.sebangsa.adnanto.pemanasandua.activity.ProfilActivity;
-import com.sebangsa.adnanto.pemanasandua.config.otto.BusProvider;
 import com.sebangsa.adnanto.pemanasandua.model.Friend;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BusProvider.getInstance().post(friend);
+                EventBus.getDefault().postSticky(friend);
                 Intent intent = new Intent(context, ProfilActivity.class);
                 context.startActivity(intent);
             }
@@ -88,10 +87,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         if (dataUser.get(position).getAction().isFollow()) {
             holder.imgBtnGambar.setImageResource(R.drawable.i_followed);
-            holder.imgBtnGambar.setBackgroundColor(Color.argb(255, 147, 200, 74));
+            holder.imgBtnGambar.setBackgroundResource(R.color.colorGreenSebangsa);
         } else {
             holder.imgBtnGambar.setImageResource(R.drawable.i_follow);
-            holder.imgBtnGambar.setBackgroundColor(Color.argb(255, 255, 255, 255));
+            holder.imgBtnGambar.setBackgroundResource(R.color.colorWhite);
         }
     }
 
