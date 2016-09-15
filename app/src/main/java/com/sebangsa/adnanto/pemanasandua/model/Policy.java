@@ -5,7 +5,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Policy {
+public class Policy extends RealmObject {
     private String postPolicyLabel;
     private String resharePolicyLabel;
     private String joinPolicyLabel;

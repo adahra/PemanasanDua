@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Statistic {
+public class Statistic extends RealmObject {
     @Expose
     @SerializedName(value = "following")
     private int following;
