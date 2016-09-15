@@ -11,18 +11,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.sebangsa.adnanto.pemanasandua.R;
 import com.sebangsa.adnanto.pemanasandua.adapter.RecyclerAdapter;
-import com.sebangsa.adnanto.pemanasandua.config.otto.BusProvider;
 import com.sebangsa.adnanto.pemanasandua.config.realm.RealmService;
 import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitInterface;
 import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitService;
 import com.sebangsa.adnanto.pemanasandua.model.Data;
 import com.sebangsa.adnanto.pemanasandua.model.Friend;
-import com.sebangsa.adnanto.pemanasandua.model.realm.RealmFriend;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity
     private static final String STRING_TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerAdapter;
-    private ArrayList<Friend> dataUser = new ArrayList<>();
+    private List<Friend> dataUser;
     private RealmService realmService;
 
     @Override
@@ -47,9 +46,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-            recyclerView = (RecyclerView) findViewById(R.id.rv_tampil_data);
-            recyclerView.setLayoutManager(layoutManager);
+        dataUser = new ArrayList<>();
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_tampil_data);
+        recyclerView.setLayoutManager(layoutManager);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -66,32 +67,33 @@ public class MainActivity extends AppCompatActivity
         }
 
         realmService = RealmService.getRealmService(this);
-        BusProvider.getInstance().register(this);
+        // EventBus.getDefault().register(this);
 
         if (dataUser.size() > 0) {
-            // recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
-            Log.d(STRING_TAG, "Datanya sudah ada");
+            recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+            recyclerView.setAdapter(recyclerAdapter);
         } else {
-            RealmResults<RealmFriend>
-                    friendRealmResults = realmService.getUsers();
-            if (friendRealmResults.size() > 0) {
-                List<RealmFriend> friendList = new ArrayList<>();
-                for (RealmFriend realmFriend : friendRealmResults) {
-                    friendList.add(realmFriend);
+            RealmResults<Friend> friendResults = realmService.getUsers();
+            if (friendResults.size() > 0) {
+                dataUser = new ArrayList<>();
+                for (Friend realmFriend : friendResults) {
+                    dataUser.add(realmFriend);
                 }
 
-                // recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+                recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+                recyclerView.setAdapter(recyclerAdapter);
             } else {
                 RetrofitInterface retrofitInterface = RetrofitService.createService(RetrofitInterface.class);
                 Call<Data> call = retrofitInterface.getFollowing();
                 call.enqueue(new Callback<Data>() {
                     @Override
                     public void onResponse(Call<Data> call, Response<Data> response) {
-                        List<Friend> dataFriend;
-                        dataFriend = response.body().getFriends();
-
-                        recyclerAdapter = new RecyclerAdapter(dataFriend, MainActivity.this);
-                        recyclerView.setAdapter(recyclerAdapter);
+                        if (response.isSuccessful()) {
+                            dataUser = response.body().getFriends();
+                            realmService.saveUser(dataUser);
+                            recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+                            recyclerView.setAdapter(recyclerAdapter);
+                        }
                     }
 
                     @Override
@@ -119,35 +121,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.nav_following:
-                startActivity(new Intent(MainActivity.this, ProfilActivity.class));
-                break;
-            case R.id.nav_followers:
-                startActivity(new Intent(MainActivity.this, ProfilActivity.class));
-                break;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer != null) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        return true;
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
-        BusProvider.getInstance().unregister(this);
+        //EventBus.getDefault().unregister(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        BusProvider.getInstance().register(this);
+        //EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        return false;
     }
 }
