@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="Name"
                 android:textSize="16sp"
                 android:id="@+id/tv_profil_name"/>
 
@@ -34,7 +33,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="Username"
                 android:textSize="16sp"
                 android:id="@+id/tv_profil_username"/>
 
@@ -43,7 +41,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="Deskripsi"
                 android:textSize="16sp"
                 android:id="@+id/tv_profil_bio"/>
         </LinearLayout>
@@ -54,18 +51,19 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <ImageButton
+            <include
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/img_btn_profil_sebut"
-                android:text="ButtonLeft"/>
+                layout="@layout/test_button"/>
 
-            <ImageButton
+            <include
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:id="@+id/img_btn_profil_following"/>
+                android:id="@+id/img_btn_profil_following"
+                layout="@layout/test_button"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
