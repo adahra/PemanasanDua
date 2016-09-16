@@ -25,7 +25,7 @@
                 android:id="@+id/test_button_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_gravity="center"
                 android:text="@string/image_button_relative"/>
         </LinearLayout>
