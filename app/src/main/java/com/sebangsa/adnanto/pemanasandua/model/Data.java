@@ -6,10 +6,13 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Data {
+public class Data extends RealmObject {
     @Expose
     @SerializedName(value = "status")
     private int status;
@@ -18,13 +21,13 @@ public class Data {
     private int timestamp;
     @Expose
     @SerializedName(value = "friends")
-    private List<Friend> friends = new ArrayList<>();
+    private RealmList<Friend> friends = new RealmList<Friend>();
     @Expose
     @SerializedName(value = "status_lang")
     private String statusLang;
     @Expose
     @SerializedName("groups")
-    private List<Group> groups = new ArrayList<>();
+    private RealmList<Group> groups = new RealmList<Group>();
 
     public int getStatus() {
         return status;
@@ -46,7 +49,7 @@ public class Data {
         return friends;
     }
 
-    public void setFriends(List<Friend> friends) {
+    public void setFriends(RealmList<Friend> friends) {
         this.friends = friends;
     }
 
@@ -62,7 +65,7 @@ public class Data {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(RealmList<Group> groups) {
         this.groups = groups;
     }
 }

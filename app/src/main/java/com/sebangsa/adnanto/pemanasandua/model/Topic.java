@@ -1,13 +1,19 @@
 package com.sebangsa.adnanto.pemanasandua.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
 
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Topic {
-
+public class Topic extends RealmObject {
+    @Expose
+    @SerializedName(value = "id")
     private int id;
+    @Expose
+    @SerializedName(value = "label")
     private String label;
 
     public int getId() {

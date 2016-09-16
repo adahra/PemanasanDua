@@ -7,6 +7,7 @@ import io.realm.RealmObject;
  */
 
 
-public class Verified {
+public class Verified extends RealmObject {
+    private String id;
 
 }

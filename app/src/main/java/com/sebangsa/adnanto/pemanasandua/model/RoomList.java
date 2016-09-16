@@ -1,13 +1,22 @@
 package com.sebangsa.adnanto.pemanasandua.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
 
 /**
  * Created by adnanto on 8/31/16.
  */
-public class RoomList {
+public class RoomList extends RealmObject {
+    @Expose
+    @SerializedName(value = "post_count")
     private int postCount;
+    @Expose
+    @SerializedName(value = "room_name")
     private String roomName;
+    @Expose
+    @SerializedName(value = "room_id")
     private int roomId;
 
     public int getPostCount() {

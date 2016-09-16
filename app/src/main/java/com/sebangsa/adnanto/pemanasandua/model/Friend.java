@@ -12,22 +12,22 @@ import io.realm.RealmObject;
 /**
  * Created by adnanto on 8/31/16.
  */
-public class Friend {
+public class Friend extends RealmObject {
     @Expose
     @SerializedName(value = "username")
     private String username;
     @Expose
     @SerializedName(value = "bio")
     private String bio;
-    @Expose
-    @SerializedName(value = "verified")
-    private Verified verified;
+//    @Expose
+//    @SerializedName(value = "verified")
+//    private Verified verified;
     @Expose
     @SerializedName(value = "name")
     private String name;
-    @Expose
-    @SerializedName(value = "bangsa")
-    private List<Object> bangsa = new ArrayList<>();
+//    @Expose
+//    @SerializedName(value = "bangsa")
+//    private List<Object> bangsa = new ArrayList<>();
     @Expose
     @SerializedName(value = "avatar")
     private Avatar avatar;
@@ -60,13 +60,13 @@ public class Friend {
         this.bio = bio;
     }
 
-    public Verified getVerified() {
-        return verified;
-    }
-
-    public void setVerified(Verified verified) {
-        this.verified = verified;
-    }
+//    public Verified getVerified() {
+//        return verified;
+//    }
+//
+//    public void setVerified(Verified verified) {
+//        this.verified = verified;
+//    }
 
     public String getName() {
         return name;
@@ -76,13 +76,13 @@ public class Friend {
         this.name = name;
     }
 
-    public List<Object> getBangsa() {
-        return bangsa;
-    }
-
-    public void setBangsa(List<Object> bangsa) {
-        this.bangsa = bangsa;
-    }
+//    public List<Object> getBangsa() {
+//        return bangsa;
+//    }
+//
+//    public void setBangsa(List<Object> bangsa) {
+//        this.bangsa = bangsa;
+//    }
 
     public Avatar getAvatar() {
         return avatar;
