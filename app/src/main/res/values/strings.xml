@@ -18,4 +18,5 @@
     <string name="string_nav_followers">Followers</string>
     <string name="string_hint_search">Type your keyword here...</string>
     <string name="title_activity_profil">ProfilActivity</string>
+    <string name="image_button_relative">Image Button Relative</string>
 </resources>
