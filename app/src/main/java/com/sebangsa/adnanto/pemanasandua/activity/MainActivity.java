@@ -1,6 +1,5 @@
 package com.sebangsa.adnanto.pemanasandua.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,18 +10,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.sebangsa.adnanto.pemanasandua.R;
 import com.sebangsa.adnanto.pemanasandua.adapter.RecyclerAdapter;
-import com.sebangsa.adnanto.pemanasandua.config.otto.BusProvider;
 import com.sebangsa.adnanto.pemanasandua.config.realm.RealmService;
 import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitInterface;
 import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitService;
 import com.sebangsa.adnanto.pemanasandua.model.Data;
 import com.sebangsa.adnanto.pemanasandua.model.Friend;
-import com.sebangsa.adnanto.pemanasandua.model.realm.RealmFriend;
+import com.sebangsa.adnanto.pemanasandua.model.eventbus.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +35,9 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String STRING_TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerAdapter;
-    private ArrayList<Friend> dataUser = new ArrayList<>();
+    private List<Friend> dataUser;
     private RealmService realmService;
 
     @Override
@@ -46,15 +46,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        dataUser = new ArrayList<>();
 
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-            recyclerView = (RecyclerView) findViewById(R.id.rv_tampil_data);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_tampil_data);
+        if (recyclerView != null) {
             recyclerView.setLayoutManager(layoutManager);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         if (drawer != null) {
+            //noinspection deprecation
             drawer.setDrawerListener(toggle);
         }
 
@@ -66,32 +70,32 @@ public class MainActivity extends AppCompatActivity
         }
 
         realmService = RealmService.getRealmService(this);
-        BusProvider.getInstance().register(this);
 
         if (dataUser.size() > 0) {
-            // recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
-            Log.d(STRING_TAG, "Datanya sudah ada");
+            recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+            recyclerView.setAdapter(recyclerAdapter);
         } else {
-            RealmResults<RealmFriend>
-                    friendRealmResults = realmService.getUsers();
-            if (friendRealmResults.size() > 0) {
-                List<RealmFriend> friendList = new ArrayList<>();
-                for (RealmFriend realmFriend : friendRealmResults) {
-                    friendList.add(realmFriend);
+            RealmResults<Friend> friendResults = realmService.getUsers();
+            if (friendResults.size() > 0) {
+                dataUser = new ArrayList<>();
+                for (Friend realmFriend : friendResults) {
+                    dataUser.add(realmFriend);
                 }
 
-                // recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+                recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+                recyclerView.setAdapter(recyclerAdapter);
             } else {
                 RetrofitInterface retrofitInterface = RetrofitService.createService(RetrofitInterface.class);
                 Call<Data> call = retrofitInterface.getFollowing();
                 call.enqueue(new Callback<Data>() {
                     @Override
                     public void onResponse(Call<Data> call, Response<Data> response) {
-                        List<Friend> dataFriend;
-                        dataFriend = response.body().getFriends();
-
-                        recyclerAdapter = new RecyclerAdapter(dataFriend, MainActivity.this);
-                        recyclerView.setAdapter(recyclerAdapter);
+                        if (response.isSuccessful()) {
+                            dataUser = response.body().getFriends();
+                            realmService.saveUser(dataUser);
+                            recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
+                            recyclerView.setAdapter(recyclerAdapter);
+                        }
                     }
 
                     @Override
@@ -104,6 +108,8 @@ public class MainActivity extends AppCompatActivity
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -119,35 +125,33 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.nav_following:
-                startActivity(new Intent(MainActivity.this, ProfilActivity.class));
-                break;
-            case R.id.nav_followers:
-                startActivity(new Intent(MainActivity.this, ProfilActivity.class));
-                break;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer != null) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        return true;
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
-        BusProvider.getInstance().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        BusProvider.getInstance().register(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        return false;
+    }
+
+    @Subscribe
+    public void onRealmEvent(List<Friend> friends) {
+        dataUser = friends;
+        recyclerAdapter = new RecyclerAdapter(friends, MainActivity.this);
+        recyclerView.setAdapter(recyclerAdapter);
+        for (Friend friend : friends) {
+            realmService.saveUser(friend);
+        }
+    }
+
+    @Subscribe
+    public void onMessageEvent(MessageEvent messageEvent) {
+        Toast.makeText(MainActivity.this, messageEvent.getMessage(), Toast.LENGTH_LONG).show();
     }
 }
