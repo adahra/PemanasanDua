@@ -3,7 +3,6 @@ package com.sebangsa.adnanto.pemanasandua.config.realm;
 import android.content.Context;
 
 import com.sebangsa.adnanto.pemanasandua.model.Friend;
-import com.sebangsa.adnanto.pemanasandua.model.realm.RealmFriend;
 
 import java.util.List;
 
@@ -48,14 +47,14 @@ public class RealmService {
         });
     }
 
-    public void updateUser(final RealmFriend friend) {
+    public void updateUser(final Friend friend) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realmm) {
-                if (friend.isFollow()) {
-                    friend.setFollow(false);
+                if (friend.getAction().isFollow()) {
+                    friend.getAction().setFollow(false);
                 } else {
-                    friend.setFollow(true);
+                    friend.getAction().setFollow(true);
                 }
 
                 realmm.copyToRealmOrUpdate(friend);
