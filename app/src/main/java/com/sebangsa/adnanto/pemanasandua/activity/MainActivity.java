@@ -1,6 +1,5 @@
 package com.sebangsa.adnanto.pemanasandua.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.sebangsa.adnanto.pemanasandua.R;
 import com.sebangsa.adnanto.pemanasandua.adapter.RecyclerAdapter;
@@ -20,8 +20,10 @@ import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitInterface;
 import com.sebangsa.adnanto.pemanasandua.config.retrofit.RetrofitService;
 import com.sebangsa.adnanto.pemanasandua.model.Data;
 import com.sebangsa.adnanto.pemanasandua.model.Friend;
+import com.sebangsa.adnanto.pemanasandua.model.eventbus.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String STRING_TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerAdapter;
     private List<Friend> dataUser;
@@ -45,17 +46,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         dataUser = new ArrayList<>();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView = (RecyclerView) findViewById(R.id.rv_tampil_data);
-        recyclerView.setLayoutManager(layoutManager);
+        if (recyclerView != null) {
+            recyclerView.setLayoutManager(layoutManager);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         if (drawer != null) {
+            //noinspection deprecation
             drawer.setDrawerListener(toggle);
         }
 
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         realmService = RealmService.getRealmService(this);
-        // EventBus.getDefault().register(this);
 
         if (dataUser.size() > 0) {
             recyclerAdapter = new RecyclerAdapter(dataUser, MainActivity.this);
@@ -106,6 +108,8 @@ public class MainActivity extends AppCompatActivity
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -123,17 +127,31 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //EventBus.getDefault().register(this);
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         return false;
+    }
+
+    @Subscribe
+    public void onRealmEvent(List<Friend> friends) {
+        dataUser = friends;
+        recyclerAdapter = new RecyclerAdapter(friends, MainActivity.this);
+        recyclerView.setAdapter(recyclerAdapter);
+        for (Friend friend : friends) {
+            realmService.saveUser(friend);
+        }
+    }
+
+    @Subscribe
+    public void onMessageEvent(MessageEvent messageEvent) {
+        Toast.makeText(MainActivity.this, messageEvent.getMessage(), Toast.LENGTH_LONG).show();
     }
 }
