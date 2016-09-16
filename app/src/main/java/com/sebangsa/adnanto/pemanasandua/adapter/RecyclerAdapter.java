@@ -81,7 +81,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             e.printStackTrace();
         }
 
-        holder.tvUserName.setText(dataUser.get(position).getUsername().trim());
+        holder.tvUserName.setText("@" + dataUser.get(position).getUsername().trim());
         holder.tvName.setText(dataUser.get(position).getName().trim());
         // holder.tvDeskripsi.setText(dataUser.get(position).getBio().trim());
 
