@@ -26,7 +26,11 @@ public class RealmService {
         RealmConfiguration realmConfig = new RealmConfiguration
                 .Builder(context)
                 .deleteRealmIfMigrationNeeded()
+<<<<<<< HEAD
+                .name("PemanasanDua")
+=======
                 .name("PemanasanDua.realm")
+>>>>>>> master
                 .inMemory()
                 .build();
         Realm.setDefaultConfiguration(realmConfig);

@@ -17,6 +17,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+<<<<<<< HEAD
+=======
     <style name="RxButton" parent="Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
@@ -30,4 +32,5 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:checked">true</item>
     </style>
+>>>>>>> master
 </resources>

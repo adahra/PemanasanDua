@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+<<<<<<< HEAD
+=======
 apply plugin: 'me.tatarka.retrolambda'
+>>>>>>> master
 
 android {
     compileSdkVersion 23
@@ -8,11 +11,20 @@ android {
 
     defaultConfig {
         applicationId "com.sebangsa.adnanto.pemanasandua"
+<<<<<<< HEAD
+        minSdkVersion 10
+=======
         minSdkVersion 15
+>>>>>>> master
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
+<<<<<<< HEAD
+    buildTypes {
+        release {
+            minifyEnabled false
+=======
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -27,6 +39,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+>>>>>>> master
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -43,6 +56,9 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'org.greenrobot:eventbus:3.0.0'
+<<<<<<< HEAD
+=======
     compile 'io.reactivex:rxandroid:0.25.0'
+>>>>>>> master
     compile 'com.github.bumptech.glide:glide:3.7.0'
 }

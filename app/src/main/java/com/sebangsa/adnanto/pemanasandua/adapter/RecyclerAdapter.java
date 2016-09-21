@@ -25,8 +25,11 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
 import rx.Observable;
 
+>>>>>>> master
 /**
  * Created by adnanto on 9/7/16.
  */
@@ -63,7 +66,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().postSticky(friend);
+<<<<<<< HEAD
+=======
                 Observable<String> stringObservable = Observable.just("Hello");
+>>>>>>> master
                 Intent intent = new Intent(context, ProfilActivity.class);
                 context.startActivity(intent);
             }
