@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/okio-1.9.0_60593d262fefe380d094440992ccc33affca6789.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/glide-3.7.0_b60e824bc95c377f7f30198d428e173be9ce5f2b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="8fbaa3881e39f1985193bc1ce4058e56f4804756">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/instant-run_6ba04bdfd7d76abb3424b4aed2666f4d0b37c6ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="354db236ec82e38bedb1101d6ddf2c2eca7bc57f">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_e107f184de4043afb15e187eac16527887055834.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_c5eb02e6b8942605973b8c6dc289d434697e9c81.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.getkeepsafe.relinker/relinker/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="264f0bc4c0680cfe7a60fea1f12a43f1ab48e7c8">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.getkeepsafe.relinker-relinker-1.2.1_f2fdfbfbe01c2710e564e6b1679e4de395b8b67c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_a6f91e844399bd694d182a63966bc6426f6c0a01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/io.reactivex/rxandroid/0.25.0/866b539d3ae58abbd47880f243c02f914fec5cda/rxandroid-0.25.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="866b539d3ae58abbd47880f243c02f914fec5cda">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/rxandroid-0.25.0_c29f90ffe68f7adee9bbb36c6eadbe0a12b00cb0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_380081cb128b4a2a8c305320d70515a1987876d9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/retrofit-2.1.0_720bfe1e20ac26b5af40d4a1d6dfbfbc517a3e59.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/converter-gson-2.1.0_904584dd73aad415e70998155a3f988f087ec300.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/io.realm/realm-android-library/1.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="15a3e65c92d3cde64c725dba8d590a1123d2d213">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/io.realm-realm-android-library-1.2.0_69756f399a74a1d0110ff56d8fda174775da46c3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-23.1.1_8b2a3e7ec0addb87a8c6726c884c4856ef3fac3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_ce3313e687c32b30d845920b0bf529fff7a23a69.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/eventbus-3.0.0_556388d23b8024fbe7733119ab7916b0316df407.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_3fe3db9b6027da9b3b55816590f79d2a14f0aa8d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_8e7de2dc78b1ea4ea9d6df456a060d5b3f4eae23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/gson-2.7_1fc7a1ef1c10c1cc8ea16b3d7a4a79f8fb2fd7b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.4.0_b7782573d77e13dcae732300394991f8b3c76238.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.4.0_70ce6196e2e1730dbf1e53ba7d354492f084d4ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_80c1e22620f89ef645f40672c94c65e11952e5e9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.0.12/277d8a8184f92951355d8ddbcac855bf8f12bc5e/rxjava-1.0.12.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="277d8a8184f92951355d8ddbcac855bf8f12bc5e">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/rxjava-1.0.12_c6c5bfb1dc4655097eabf0038170b40c65896454.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/adnanto/.gradle/caches/modules-2/files-2.1/io.realm/realm-annotations/1.2.0/5e4042f9e0d39e0d01d4a8661d01e24995b2cbef/realm-annotations-1.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="5e4042f9e0d39e0d01d4a8661d01e24995b2cbef">
+        <dex dex="/home/adnanto/AndroidStudioProjects/PemanasanDua/app/build/intermediates/pre-dexed/debug/realm-annotations-1.2.0_e15db1bbb1ba87dbcd321ebc8a99b5ebf553a39b.jar" />
+    </item>
+
+</items>
