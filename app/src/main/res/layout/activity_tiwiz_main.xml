@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TiwizMainActivity">
+
+    <Button
+        android:id="@+id/btnPart1"
+        android:text="Part 1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <Button
+        android:id="@+id/btnPart2"
+        android:text="Part 2"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <Button
+        style="@style/RxButton"
+        android:id="@+id/btnPart3"
+        android:text="Part 3"
+        android:layout_height="wrap_content" />
+
+    <Button
+        style="@style/RxButton"
+        android:id="@+id/btnPart4"
+        android:text="Part 4"
+        android:layout_height="wrap_content" />
+
+    <Button
+        style="@style/RxButton"
+        android:id="@+id/btnPart5"
+        android:text="Part 5"
+        android:layout_height="wrap_content" />
+
+    <Button
+        style="@style/RxButton"
+        android:id="@+id/btnPart6"
+        android:text="Part 6"
+        android:layout_height="wrap_content" />
+
+    <Button
+        style="@style/RxButton"
+        android:id="@+id/btnPart7"
+        android:text="Part 7"
+        android:layout_height="wrap_content" />
+
+    <Button
+        style="@style/RxButton"
+        android:id="@+id/btnPart8"
+        android:text="Part 8"
+        android:layout_height="wrap_content" />
+
+    <Button
+        style="@style/RxButton"
+        android:id="@+id/btnPart9"
+        android:text="Part 9"
+        android:layout_height="wrap_content" />
+</LinearLayout>
