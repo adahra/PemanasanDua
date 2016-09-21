@@ -8,6 +8,10 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+<<<<<<< HEAD
+=======
+import android.util.Log;
+>>>>>>> master
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,6 +25,11 @@ import com.sebangsa.adnanto.pemanasandua.view.RelativeLayoutButton;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+<<<<<<< HEAD
+=======
+import rx.Observer;
+
+>>>>>>> master
 public class ProfilActivity extends AppCompatActivity implements View.OnClickListener {
     private CircularImageView circularImageView;
     private TextView tvProfilName;
@@ -52,6 +61,25 @@ public class ProfilActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         EventBus.getDefault().register(this);
+<<<<<<< HEAD
+=======
+        Observer<String> stringObserver = new Observer<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.d("MY OBSERVER", s);
+            }
+        };
+>>>>>>> master
     }
 
     @Override
